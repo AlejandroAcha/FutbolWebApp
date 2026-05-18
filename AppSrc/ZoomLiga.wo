@@ -8,8 +8,12 @@ Use cWebMenuGroup.pkg
 Use cWebMenuItem.pkg
 Use cWebForm.pkg
 Use cWebButton.pkg
+Use cWebList.pkg
+Use cWebColumn.pkg
 
 Use cligaDataDictionary.dd
+Use cequipoDataDictionary.dd
+Use SelectEquipo.wo
 
 Object oZoomLiga is a cWebView
     Set piColumnCount to 12
@@ -21,6 +25,10 @@ Object oZoomLiga is a cWebView
     Set piMaxWidth to 1024
 
     Object oliga_DD is a cligaDataDictionary
+    End_Object 
+
+    Object oequipo_DD is a cequipoDataDictionary
+        Set DDO_Server to oliga_DD
     End_Object 
 
     Set Main_DD to oliga_DD
@@ -89,6 +97,36 @@ Object oZoomLiga is a cWebView
             Procedure OnClick
                 Send NavigatePath
             End_Procedure
+        End_Object 
+
+        // ============================================================================
+        // EJERCICIO 4 - From Parent (v2): Lista de equipos embebida en ZoomLiga
+        // ============================================================================
+        // En vez de un boton que abra otra vista, los equipos de la liga 
+        // aparecen directamente en la propia vista de la liga.
+        // Como oequipo_DD tiene como DDO_Server a oliga_DD, el framework filtra 
+        // automaticamente los equipos por la liga actual sin necesidad de codigo.
+        // ============================================================================
+        Object oEquiposList is a cWebList
+            Set piColumnSpan to 12
+            Set piColumnIndex to 0
+            Set psCSSClass to "MobileList"
+            Set pbFillHeight to True
+            Set pbShowHeader to True
+            Set Server to oequipo_DD
+
+            Object oEquipoIDCol is a cWebColumn
+                Entry_Item equipo.ID
+                Set psCaption to "ID"
+                Set piWidth to 100
+            End_Object 
+
+            Object oEquipoNombreCol is a cWebColumn
+                Entry_Item equipo.Nombre
+                Set psCaption to "Equipo"
+                Set piWidth to 800
+            End_Object 
+
         End_Object 
 
     End_Object 

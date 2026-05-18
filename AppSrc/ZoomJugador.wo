@@ -11,6 +11,7 @@ Use cWebForm.pkg
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
 Use cjugadorDataDictionary.dd
+Use SelectPosicion.wo
 
 Object oZoomJugador is a cWebView
     Set piColumnCount to 12
@@ -94,8 +95,28 @@ Object oZoomJugador is a cWebView
             Procedure OnPrompt
                 Send NavigatePath
             End_Procedure
-        End_Object 
-    End_Object 
+        End_Object
+
+        // ============================================================================
+        // EJERCICIO 5 - Undefined: Zoom jugador -> Select posicion
+        // ============================================================================
+        // No hay relacion directa entre jugador y posicion en los DDs.
+        // La relacion va via la tabla intermedia jugadorposicion (N:M).
+        // Por eso el framework lo clasifica como nfUndefined.
+        // ============================================================================
+        Object oVerPosicionesBtn is a cWebButton
+            Set psCaption to "Ver posiciones"
+            Set piColumnSpan to 12
+            Set piColumnIndex to 0
+
+            WebRegisterPath ntNavigateForward oSelectPosicion
+
+            Procedure OnClick
+                Send NavigatePath
+            End_Procedure
+        End_Object
+
+    End_Object
 
     Object oActionGroup is a cWebMenuGroup
 
