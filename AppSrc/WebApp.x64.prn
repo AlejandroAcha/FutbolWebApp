@@ -1,5 +1,5 @@
 Compiling Program: C:\FutbolWebApp\AppSrc\WebApp.src
-Memory Available: 42419687424
+Memory Available: 18467393536
 1>Use AllWebAppClasses.pkg
 Using pre-compiled package ALLWEBAPPCLASSES.PKG
 Including file: AllWebAppClasses.x64.pkd    (C:\Program Files\DataFlex 25.0\Pkg\AllWebAppClasses.x64.pkd)
@@ -1769,7 +1769,19 @@ Including file: equipo.fd    (C:\FutbolWebApp\DDSrc\equipo.fd)
 Including file: SelectLiga.wo    (C:\FutbolWebApp\AppSrc\SelectLiga.wo)
 37648>>>// C:\FutbolWebApp\AppSrc\SelectLiga.wo
 37648>>>// Select de la liga
-37648>>>//
+37648>>>//// ============================================================================
+37648>>>// EJERCICIO 1 - From Main: Select-Zoom
+37648>>>// ============================================================================
+37648>>>// El InvokingObject es la lista (oList), no la vista SelectLiga.
+37648>>>// Cuando el usuario hace clic en una fila, se dispara OnRowClick de oList.
+37648>>>// 
+37648>>>// El framework detecta que Select y Zoom comparten el mismo DD (liga),
+37648>>>// por lo que clasifica la navegacion como nfFromMain.
+37648>>>// 
+37648>>>// En este caso From Main, el OnRowClick NO hace NavigateForward,
+37648>>>// hace NavigateClose: cierra el Select y devuelve el registro seleccionado
+37648>>>// a quien invoco al Select originalmente.
+37648>>>// ============================================================================
 37648>>>
 37648>>>Use cWebView.pkg
 37648>>>Use cWebList.pkg
@@ -3570,7 +3582,7 @@ Including file: SelectJugador.wo    (C:\FutbolWebApp\AppSrc\SelectJugador.wo)
 39187>Send StartWebApp of oWebApp
 39188>
 Summary
-Memory Available: 42406453248
+Memory Available: 18434695168
 Total Warnings : 0
 Total Errors   : 0
 Total Symbols  : 25627

@@ -1,6 +1,18 @@
 ﻿// C:\FutbolWebApp\AppSrc\SelectLiga.wo
 // Select de la liga
-//
+//// ============================================================================
+// EJERCICIO 1 - From Main: Select-Zoom
+// ============================================================================
+// El InvokingObject es la lista (oList), no la vista SelectLiga.
+// Cuando el usuario hace clic en una fila, se dispara OnRowClick de oList.
+// 
+// El framework detecta que Select y Zoom comparten el mismo DD (liga),
+// por lo que clasifica la navegacion como nfFromMain.
+// 
+// En este caso From Main, el OnRowClick NO hace NavigateForward,
+// hace NavigateClose: cierra el Select y devuelve el registro seleccionado
+// a quien invoco al Select originalmente.
+// ============================================================================
 
 Use cWebView.pkg
 Use cWebList.pkg
