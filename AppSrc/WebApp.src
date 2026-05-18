@@ -2,6 +2,28 @@
 Use cConnection.pkg
 Use cWebMenuItem.pkg
 
+// ============================================================================
+// EJERCICIO 6 - Orden de eventos en una navegacion Forward + Back
+// ============================================================================
+// 1. OnGetNavigateForwardData  -> InvokingObject (el que inicia la navegacion)
+//    Prepara los datos: rowID, tabla, tipo de navegacion, named values, etc.
+//
+// 2. OnNavigateForward         -> InvokedView (la vista destino)
+//    Puerta de entrada. Recibe el NavigateData y configura la vista.
+//
+// [el usuario interactua con la vista invocada]
+//
+// 3. OnGetNavigateBackData     -> InvokedObject (el que provoca la vuelta, ej: oList)
+//    Antes de cerrar, mete datos en NavigateData para devolver al origen.
+//
+// 4. OnNavigateBack            -> InvokingObject (el que inicio todo)
+//    Recibe los datos de vuelta.
+//
+// Eventos no propios de navegacion pero que intervienen:
+// - OnShow / OnBeforeShow      -> InvokedView (al mostrarse la vista destino)
+// - OnShow / OnBeforeShow      -> InvokingView (al volver a mostrarse)
+// ============================================================================
+
 Object oApplication is a cApplication
     Object oConnection is a cConnection
         Use LoginEncryption.pkg
