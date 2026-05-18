@@ -1,0 +1,12 @@
+# DataFlex runtime files
+Data/WebAppServerProps.dat
+Data/WebAppSession.dat
+Data/WebAppUser.dat
+Data/webappserverprops.k1
+Data/webappserverprops.k2
+Data/webappsession.k1
+Data/webappsession.k3
+
+# Compiled binary and logs
+Programs/WebApp.exe
+Programs/WebApp.log
