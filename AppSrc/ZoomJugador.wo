@@ -7,6 +7,7 @@ Use cWebPanel.pkg
 Use cWebMenuGroup.pkg
 Use cWebMenuItem.pkg
 Use cWebForm.pkg
+Use cWebButton.pkg
 
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
@@ -102,7 +103,6 @@ Object oZoomJugador is a cWebView
         // ============================================================================
         // No hay relacion directa entre jugador y posicion en los DDs.
         // La relacion va via la tabla intermedia jugadorposicion (N:M).
-        // Por eso el framework lo clasifica como nfUndefined.
         // ============================================================================
         Object oVerPosicionesBtn is a cWebButton
             Set psCaption to "Ver posiciones"

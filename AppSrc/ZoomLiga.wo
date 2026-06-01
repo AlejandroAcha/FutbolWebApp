@@ -28,8 +28,11 @@ Object oZoomLiga is a cWebView
     End_Object 
 
     Object oequipo_DD is a cequipoDataDictionary
+        // equipo es hijo de liga (DDO_Server). Aqui le digo ademas que se acote
+        // siempre a la liga del padre con Constrain_File.
         Set DDO_Server to oliga_DD
-    End_Object 
+        Set Constrain_File to liga.File_Number
+    End_Object
 
     Set Main_DD to oliga_DD
     Set Server  to oliga_DD
@@ -100,12 +103,13 @@ Object oZoomLiga is a cWebView
         End_Object 
 
         // ============================================================================
-        // EJERCICIO 4 - From Parent (v2): Lista de equipos embebida en ZoomLiga
+        // EJERCICIO 4 - From Parent (v2): lista de equipos embebida en ZoomLiga
         // ============================================================================
-        // En vez de un boton que abra otra vista, los equipos de la liga 
-        // aparecen directamente en la propia vista de la liga.
-        // Como oequipo_DD tiene como DDO_Server a oliga_DD, el framework filtra 
-        // automaticamente los equipos por la liga actual sin necesidad de codigo.
+        // Aqui los equipos salen en la misma vista de la liga, sin abrir otra.
+        // La lista apunta a oequipo_DD (Set Server). Para que se vea SOLO los
+        // equipos de esta liga, la acotacion la hace el Constrain_File que puse
+        // arriba en oequipo_DD. Lo he sacado del ejemplo WebOrderMobile (ZoomOrder.wo),
+        // que hace lo mismo con un pedido y sus lineas.
         // ============================================================================
         Object oEquiposList is a cWebList
             Set piColumnSpan to 12
