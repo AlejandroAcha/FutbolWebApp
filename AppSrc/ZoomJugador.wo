@@ -1,4 +1,4 @@
-﻿// C:\FutbolWebApp\AppSrc\ZoomJugador.wo
+// C:\FutbolWebApp\AppSrc\ZoomJugador.wo
 // Zoom de Jugador
 //
 
@@ -12,6 +12,7 @@ Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
 Use cjugadorDataDictionary.dd
 Use SelectPosicion.wo
+Use SelectJugadorPosicion.wo
 
 Object oZoomJugador is a cWebView
     Set piColumnCount to 12
@@ -113,6 +114,22 @@ Object oZoomJugador is a cWebView
 
             Procedure OnClick
                 Send NavigatePath
+            End_Procedure
+        End_Object
+
+        Object oEditarPosicionesBtn is a cWebButton
+            Set psCaption to "Editar posiciones"
+            Set piColumnSpan to 12
+            Set piColumnIndex to 0
+
+            WebRegisterPath ntNavigateForward oSelectJugadorPosicion
+
+            Procedure OnClick
+                Send NavigatePath
+            End_Procedure
+
+            Procedure OnGetNavigateForwardData tWebNavigateData ByRef NavigateData Handle hoToView
+                Move nfFromParent to NavigateData.eNavigateType
             End_Procedure
         End_Object
 

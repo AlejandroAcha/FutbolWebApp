@@ -1,4 +1,5 @@
-﻿Use DataDict.pkg
+Use DataDict.pkg
+Use dbCodeValidationTable.pkg
 
 Open entrenador
 Open equipo
@@ -15,6 +16,11 @@ Class centrenadorDataDictionary is a DataDictionary
         Set Foreign_Field_Option DD_KEYFIELD DD_FINDREQ to True
         Set Foreign_Field_Option DD_INDEXFIELD DD_NOPUT to True
         Set Foreign_Field_Option DD_DEFAULT DD_DISPLAYONLY to True
+
+        Object oNacionalidadCVT is a dbCodeValidationTable
+            Set psCodeType to "PAIS"
+            Set Field_Value_Table entrenador.Nacionalidad to Self
+        End_Object
 
     End_Procedure
 

@@ -1,0 +1,104 @@
+// C:\FutbolWebApp\AppSrc\SelectJugadorPosicion.wo
+// Select de JugadorPosicion - gestion de posiciones por jugador
+//
+
+Use cWebView.pkg
+Use cWebList.pkg
+Use cWebMenuGroup.pkg
+Use cWebMenuItem.pkg
+Use cWebColumn.pkg
+
+Use cposicionDataDictionary.dd
+Use cjugadorposicionDataDictionary.dd
+
+Object oSelectJugadorPosicion is a cWebView
+    Set psCaption to "Posiciones del Jugador"
+    Set peWebViewStyle to wvsDrilldown
+    Set peViewType to vtSelect
+    Set piColumnCount to 12
+    Set pbShowCaption to False
+    Set piMaxWidth to 1024
+
+    Object oPosicionesTotalesDD is a cposicionDataDictionary
+    End_Object
+
+    Object oJugadorPosicionDD is a cjugadorposicionDataDictionary
+    End_Object
+
+    Set Main_DD To oJugadorPosicionDD
+    Set Server  To oJugadorPosicionDD
+
+
+    Object oPosicionesTotalesList is a cWebList
+        Set piColumnSpan to 6
+        Set piColumnIndex to 0
+        Set psCSSClass to "MobileList"
+        Set pbServerOnRowClick to True
+        Set pbFillHeight to True
+        Set pbShowHeader to True
+        Set piSortColumn to 0
+        Set Server to oPosicionesTotalesDD
+
+        Object oPosicionesTotalesNombre is a cWebColumn
+            Entry_Item posicion.Nombre
+            Set psCaption to "Posiciones disponibles"
+            Set piWidth to 500
+        End_Object
+
+    End_Object
+
+    Object oPosicionesJugadorList is a cWebList
+        Set piColumnSpan to 6
+        Set piColumnIndex to 6
+        Set psCSSClass to "MobileList"
+        Set pbServerOnRowClick to True
+        Set pbFillHeight to True
+        Set pbShowHeader to True
+        Set piSortColumn to 0
+
+        Object oPosicionNombre is a cWebColumn
+            Entry_Item posicion.Nombre
+            Set psCaption to "Posiciones del jugador"
+            Set piWidth to 500
+        End_Object
+
+    End_Object
+
+
+    Object oActionGroup is a cWebMenuGroup
+
+        Object oAnadirBtn is a cWebMenuItem
+            Set psCSSClass to "WebClearMenuItem"
+            Set psCaption to "Anadir"
+
+            Procedure OnClick
+                RowID ridPosicion
+                Get Current_Row_ID of oPosicionesTotalesDD to ridPosicion
+                Send request_clear to oJugadorPosicionDD
+                Set Field_Changed_Value of oJugadorPosicionDD jugadorposicion.PosicionID to ridPosicion
+                Send request_save to oJugadorPosicionDD
+                Send refresh_list of oPosicionesJugadorList
+            End_Procedure
+
+        End_Object
+
+        Object oQuitarBtn is a cWebMenuItem
+            Set psCSSClass to "WebDeleteMenuItem"
+            Set psCaption to "Quitar"
+
+            Procedure OnClick
+                Send request_delete to oJugadorPosicionDD
+                Send refresh_list of oPosicionesJugadorList
+            End_Procedure
+
+        End_Object
+
+    End_Object
+
+
+    Procedure OnNavigateForward tWebNavigateData NavigateData Integer hoInvokingView Integer hoInvokingObject
+        Send refresh_list of oPosicionesTotalesList
+    End_Procedure
+
+
+End_Object
